@@ -1,0 +1,12 @@
+services:
+  converter:
+    build: { context: . }
+    working_dir: /app
+    volumes: ["./:/app"]
+    healthcheck:
+      test: ["CMD", "php", "-m"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+    entrypoint: ["php", "cli_convert.php"]
+    command: ["GIF", "items"]
